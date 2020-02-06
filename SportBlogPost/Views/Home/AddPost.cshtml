@@ -1,0 +1,27 @@
+﻿@model SportBlogPost.ViewModels.AddPost
+
+    <form asp-controller="Home" asp-action="AddPost" method="post">
+
+        @*<input type="hidden" asp-for="Post.PostID" />
+        <input type="hidden" asp-for="Post.PostDate" />*@
+        <div class="form-group">
+            <label asp-for="Post.Subject"></label>
+            <br />
+            <input type="text" asp-for="Post.Subject" /><br />
+            <span asp-validation-for="Post.Subject"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Post.Category"></label>
+            <br />
+            <select asp-for="@Model.Post.CategoryID" asp-items="Model.CategoriesList"></select>
+            <span asp-validation-for="@Model.Post.CategoryID"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Post.Body"></label>
+            <br />
+            <textarea asp-for="Post.Body" rows="12" cols="60"></textarea><br/>
+            <span asp-validation-for="Post.Body"></span>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+
+    </form>

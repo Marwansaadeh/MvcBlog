@@ -1,0 +1,44 @@
+﻿@model SportBlogPost.ViewModels.PostsAndCategories
+
+@{
+    string x = "";
+}
+
+@{
+    List<string> y = new List<string>();
+}
+
+
+@foreach (var c in Model.Categories)
+{
+    <h3>@c.CategoryName</h3>
+
+    foreach (var p in Model.Posts)
+    {
+
+        if (c.CategoryID == p.CategoryID)
+        {
+
+            x = @p.Subject.ToString() + ","+" ";
+            y.Add(x);
+        }
+
+    } 
+    @foreach (var item in y)
+    {
+        if (item == y[y.Count - 1])
+        {
+          @item.Remove(item.IndexOf(","));
+        }
+        else
+        {
+        @item;
+        }
+
+    }
+    y = new List<string>();
+
+
+}
+
+

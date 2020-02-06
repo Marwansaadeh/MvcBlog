@@ -1,0 +1,44 @@
+﻿@model SportBlogPost.ViewModels.PostsAndCategories
+
+
+    <div class="row">
+
+        <div class="col-md-2">
+            <form asp-controller="Home" asp-action="Search" method="post">
+
+                <br />
+
+                <input type="text" asp-for="Post.Subject" />
+
+
+
+
+                @foreach (var item in Model.Categories)
+                {
+                    <a asp-controller="Home" asp-action="CategoryPosts" asp-route-id="@item.CategoryID">
+                        @item.CategoryName
+                    </a>
+
+                    <br />
+                }
+                <input type="submit" value="Search">
+
+            </form>
+        </div> 
+        <div class="col-md-10">
+            <br />
+
+            @foreach (var item in Model.Posts)
+            {
+
+                <div class="col-md-10" id="postarea">
+
+                    <b> Subject:</b> <a asp-controller="Home" asp-action="PostDetails" asp-route-id="@item.PostID"> @item.Subject</a>,
+                    <b> Date:</b> @item.PostDate, <b>Category:</b> @item.Category.CategoryName
+                    <br />
+                    @item.Body
+
+                </div>
+            }
+        </div>
+    </div>
